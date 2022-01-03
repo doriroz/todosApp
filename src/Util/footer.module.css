@@ -1,0 +1,57 @@
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: #777;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    border: none;
+    width: 55rem;
+    font-size: 1.5rem;
+    padding: 1.5rem 1rem;
+}
+
+
+.footer a {
+    text-decoration: none;
+    color: #777;
+}
+  
+.tabSelected {
+    border: 1px solid #aaa;
+}
+  
+.footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+  
+.footer li{
+    text-decoration: none;
+    color: #777;
+    padding: 1rem;
+    margin: 0 1rem;
+    border: 1px solid #aaa;
+    border-radius: 0.5rem;
+}
+  
+
+  li .todo--inline:hover {
+    border: 1px solid #aaa;
+  }
+  
+  li .todo--inline:focus {
+    border: 1px solid #aaa;
+  }
+  
+  .todo__filterbar > a:hover {
+    border-bottom: 0.15rem solid #aaa;
+  }
+  
+  #active:target,
+  #completed:target {
+    border: 1px solid #aaa;
+  }
+  

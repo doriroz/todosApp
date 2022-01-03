@@ -1,0 +1,23 @@
+/* .todosInput {
+    background-color: whitesmoke;
+    font-style: italic;
+    border-bottom: 2px solid #ccc;
+} */
+
+.todosInput {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    width: 55rem;
+    background-color: rgba(245, 245, 245, 0.836);
+    font-style: italic;
+    font-size: 2rem;
+    border-bottom: 2px solid #ccc;
+    padding: 1.5rem 3rem;
+}
+
+.todosInput::placeholder {
+    text-align: left;
+    color:gray
+  }
+  /* todo--padding-1  */
