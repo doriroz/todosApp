@@ -8,16 +8,17 @@
     outline: none;
     border: none;
     border-radius: 5px;
-    width: 55rem;
+    width: inherit;
     background-color: rgba(245, 245, 245, 0.836);
+    font-family: 'Architects Daughter', cursive;
     font-style: italic;
     font-size: 2rem;
     border-bottom: 2px solid #ccc;
-    padding: 1.5rem 3rem;
+    /* padding: 1.5rem 30rem; */
 }
 
 .todosInput::placeholder {
     text-align: left;
-    color:gray
+    color:#9ba6d1;
   }
   /* todo--padding-1  */

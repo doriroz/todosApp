@@ -6,18 +6,16 @@ import styled from "styled-components";
 const TodosItem = (props) => {
     const todoInputRef = useRef();
     const todosCtx = useContext(TodosContext);
-    // // console.log(...TodosContext.todos);
-    todosCtx.todos.map(td=>console.log(`todoContex : ${td.name}`));
-
+    // todosCtx.todos.map(td=>console.log(`todoContex : ${td.name}`));
+    
     const InActiveStyled = styled.label`
         text-decoration:${props.todo.active==false?"line-through":"none"};
         color:${props.todo.active==false?"#aaa":"black"};
-        font-style:${props.todo.active==false?"italic":"none"};    
+        font-style:${props.todo.active==false?"italic":"none"};
     `;
 
     const isChecked = (td) => {
-        console.log(td.active);
-        return td.active == true ? "checked" : "";
+        return td.active === true ? "" : "checked";
     }
 
     const deleteItem = (todos,id) => {
@@ -29,21 +27,24 @@ const TodosItem = (props) => {
         todosCtx.setTodo(item);
     }
 
-    
-    const toggle = (todos,id) => {
-        console.log(id);
+   
+    const toggle = (id) => {
+        let todos = JSON.parse(localStorage.getItem("Todos"));
         let item = todos.find((td) => td.id == id);
-        console.log(item);
         let index = todos.indexOf(item);
-        todos[index].active = !todos[index].active
+        todos[index].active = !todos[index].active;
         
-        todosCtx.saveTodos(todos);
+        todosCtx.tabs.map(t => {
+            t.active = false;
+            return t;
+        });
+        todosCtx.saveTodos(todos);        
         todosCtx.setTodo(item);
     }
 
     const setEditable = (todos,id) => {
         let item = todos.find((td) => td.id == id);
-        console.log(item);
+        
         let index = todos.indexOf(item);
         todos[index].isEditable = true;
             
@@ -52,7 +53,7 @@ const TodosItem = (props) => {
     }
 
     const mapEditValue = (todos,id) => {
-        console.log(todoInputRef.current.value);
+        
         let item = todos.find((td) => td.id == id);
         item.name = todoInputRef.current.value;
         item.id = `id-${todoInputRef.current.value}`;
@@ -67,9 +68,7 @@ const TodosItem = (props) => {
     }
 
     const onChangeEvent = (e) => {
-        // e.preventDefault();
-        console.log(e.target.dataset.id);
-        toggle(todosCtx.todos,e.target.dataset.id);
+        toggle(e.target.dataset.id);
     }
 
     const onDbClickEvent = (e) => {
@@ -79,12 +78,12 @@ const TodosItem = (props) => {
     }
 
     const onKeyDownEvent = (e) => {  
-        console.log(e.target.dataset.id);    
+            
         if (e.code === "Enter") {
             mapEditValue(todosCtx.todos,e.target.dataset.id);
         }
     }
-
+    
     // // ON LABEL
     // // htmlFor={getId(props.todo.name)}
     const isEditable = props.todo.isEditable > 0
@@ -104,39 +103,20 @@ const TodosItem = (props) => {
         
     return <li className={classes.todosItem}>
         <div>
-        <input 
-            type="checkbox" 
-            data-id={props.todo.id} 
-            defaultChecked={isChecked(props.todo)}
-            onChange={(event=>{onChangeEvent(event)})}
-            />
-        {isEditable}
+            <input 
+                type="checkbox" 
+                data-id={props.todo.id}
+                checked = {isChecked(props.todo)}  
+                onChange={event=>onChangeEvent(event)}
+                />
+            {isEditable}
         </div>
         <a href="#" onClick={event=>{onDbClickEvent(event)}}><i className="fas fa-edit" data-id={props.todo.id}></i></a>
         <button 
             data-id={props.todo.id} 
-            onClick={(event)=>onClickEvent(event)}
-            >&times;</button>
+            onClick={(event)=>onClickEvent(event)}>&times;</button>
     </li>
 }
 
 
 export default TodosItem;
-
-
-// const getId = (name) => {
-//     return `id-${name}`;
-// }
-
-// function onExitFocus(e) {
-//     for (let i = 0; i < todoArr.length; i++) {
-//       todoArr[i].isEditable = false;
-//       if (todoArr[i].name === e.target.dataset.name) {
-//         todoArr[i].id = `id-${e.target.value}`;
-//         todoArr[i].name = e.target.value;
-//       }
-//     }
-//     setLocalStorage(todoArr);
-//     render(todoArr, getListByStatus(todoArr, selectedTab), selectedTab);
-//   }
-

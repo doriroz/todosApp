@@ -8,15 +8,14 @@ const TodosInput = (props) =>{
             event.target.value = "";    
         }
     }  
-
-    return <div>
-        <input 
+    // style={{width:"50vw"}}
+    return <input  
         className={classes.todosInput} 
         type="text" 
         placeholder="What need to be done?"
         onKeyUp={event=>addItemUpd(event)}
         />
-    </div>;
+    ;
 }
 
 export default TodosInput;

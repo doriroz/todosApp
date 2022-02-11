@@ -2,25 +2,37 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    color: #777;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightsteelblue;
+    color: white;
     outline: none;
     border: none;
-    width: 55rem;
-    font-size: 1.5rem;
-    padding: 1.5rem 1rem;
+    font-size: 3rem;
+    padding: 1.5rem 1rem;    
 }
 
 
 .footer a {
     text-decoration: none;
-    color: #777;
 }
-  
-.tabSelected {
-    border: 1px solid #aaa;
+
+.listSelected{
+    background-color:none ; 
 }
+
+.listSelected:focus-within{
+    background-color:white ; 
+}
+
+.linkSelected {
+    color: white;
+}
+
+.linkSelected:focus {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to left, #2248e2, #5f7ae8);
+}
+
   
 .footer ul {
     list-style: none;
@@ -30,28 +42,34 @@
   
 .footer li{
     text-decoration: none;
-    color: #777;
     padding: 1rem;
     margin: 0 1rem;
-    border: 1px solid #aaa;
+    border: 2px solid white;
     border-radius: 0.5rem;
 }
   
+button {
+    color:inherit;
+    /* background-color: inherit; */
+    padding: 1rem;
+    border: 2px solid white;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: inherit;
+  }
 
-  li .todo--inline:hover {
-    border: 1px solid #aaa;
+  button:focus-within{
+    color: transparent;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to left, #2248e2, #5f7ae8); 
   }
-  
-  li .todo--inline:focus {
-    border: 1px solid #aaa;
+
+  .footer div {
+    /* background-color: inherit; */
+    border-radius: 0.5rem;
   }
-  
-  .todo__filterbar > a:hover {
-    border-bottom: 0.15rem solid #aaa;
-  }
-  
-  #active:target,
-  #completed:target {
-    border: 1px solid #aaa;
+
+  .footer div:focus-within{
+    background-color:white ;
   }
   

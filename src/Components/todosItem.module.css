@@ -1,5 +1,5 @@
 .todosItem {
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     padding: 1rem 3rem;
     border-bottom: 1px solid #ddd;
     display: flex;
@@ -17,7 +17,12 @@
     margin-right: 1rem;
   }
 
-  input[type="checkbox"]:checked:before {
+  input[type="checkbox"]::before {
+    color: transparent;
+    content: "";
+  }
+
+  input[type="checkbox"]:checked::before {
     color: green;
     font-size: 2.2rem;
     font-weight: 300;
@@ -27,13 +32,14 @@
 
   .todosItem button {
     border: none;
-    outline: none;
-    font-size: 3.5rem;
+    /* outline: 1px solid; */
+    font-size: 5rem;
     color: red;
-    height: 2rem;
+    height: 2.5rem;
     position: absolute;
-    right: 3rem;
-    top: 2rem;
+    right: 1rem;
+    /* bottom: 2rem; */
+    top: -1rem;
     background-color: transparent;
     /* display: none; */
   }
@@ -44,14 +50,6 @@
     right: 6rem;
     top: 2.8rem;
   }
-  /* label {
-    padding: 1rem 25rem 1rem 1rem;
-    line-height: 2.4; 
-  }
-
-  label:focus {
-    border: 1px solid;
-  } */
 
   input[type="text"] {
     padding: 1rem 0 1rem 1rem;
