@@ -2,11 +2,14 @@ import React, { useContext,useRef } from "react";
 import classes from "./todosItem.module.css";
 import {TodosContext} from "../App";
 import styled from "styled-components";
+import useHttp from "../Hooks/useHttp1";
+
+
 
 const TodosItem = (props) => {
+    const {sendRequest:deleteRequest} = useHttp();
     const todoInputRef = useRef();
     const todosCtx = useContext(TodosContext);
-    // todosCtx.todos.map(td=>console.log(`todoContex : ${td.name}`));
     
     const InActiveStyled = styled.label`
         text-decoration:${props.todo.active==false?"line-through":"none"};
@@ -20,16 +23,29 @@ const TodosItem = (props) => {
 
     const deleteItem = (todos,id) => {
         let item = todos.find(todoid => todoid.id == id);
-        let index = todos.indexOf(item);
-        todos.splice(index, 1);
+        const urlHttp = `https://todosapp-59567-default-rtdb.firebaseio.com/todo/${item.numKey}.json`
+        deleteRequest({url:urlHttp,method:'DELETE'},(item)=>todosCtx.setTodo(item))
 
-        todosCtx.saveTodos(todos);
-        todosCtx.setTodo(item);
+        // todosCtx.setTodo(item);
     }
+
+
+    // const deleteItem = async(todos,id) => {
+    //     let item = todos.find(todoid => todoid.id == id);
+    //     console.log(item);
+    //     const url = `https://todosapp-59567-default-rtdb.firebaseio.com/todo/${item.numKey}.json`;
+    //     const response = await fetch(url,{
+    //     method:'DELETE',
+    //     })
+      
+    //     todosCtx.setTodo(item);
+    // }
 
    
     const toggle = (id) => {
-        let todos = JSON.parse(localStorage.getItem("Todos"));
+        // let todos = JSON.parse(localStorage.getItem("Todos"));
+        let todos = todosCtx.todos;
+        console.log(todos);
         let item = todos.find((td) => td.id == id);
         let index = todos.indexOf(item);
         todos[index].active = !todos[index].active;

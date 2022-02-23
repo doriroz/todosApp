@@ -9,7 +9,6 @@ const TodosItems = (props) =>{
 
     //when completed , active or all , pass todos only with active , inactive or all 
     const listItems = props.todos.map((td,ind)=>{
-        console.log(props.todos.length);
         console.log("list todo "+td);
         // props.todos.map(td=>console.log(td));
         return <TodosItem key={ind} todo={td} /> ;
